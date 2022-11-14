@@ -6,7 +6,11 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.opera.OperaDriver;
 
+import java.time.Duration;
+
 public class DriverSingleton {
+
+    private static final int WAIT_TIMEOUT_SECONDS = 3;
     private static WebDriver driver;
 
     private DriverSingleton() {
@@ -31,6 +35,7 @@ public class DriverSingleton {
                 }
             }
             driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(WAIT_TIMEOUT_SECONDS));
         }
         return driver;
     }
