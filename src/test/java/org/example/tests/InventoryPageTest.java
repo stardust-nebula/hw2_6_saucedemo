@@ -17,7 +17,7 @@ public class InventoryPageTest extends BaseTest {
         new LoginPageService().login(new User());
     }
 
-    @Test
+    @Test(description = "Verify redirection to 'Your Cart' page")
     public void verifyRedirectionToYourCartPageTest() {
         String expectedTextTitleOfYourCartPage = "YOUR CART";
         String actualTextTitleOfYourCartPage = inventoryPageService
@@ -26,7 +26,7 @@ public class InventoryPageTest extends BaseTest {
         Assert.assertEquals(actualTextTitleOfYourCartPage, expectedTextTitleOfYourCartPage, "The actual text f the page does not match expected!");
     }
 
-    @Test
+    @Test(description = "Verify 'Add to Cart' button changes to 'Remove' on click")
     public void verifyAddToCartChangesToRemoveOnClick() {
         String testProductName = "Sauce Labs Backpack";
         String expectedBtnName = "Remove".toLowerCase();

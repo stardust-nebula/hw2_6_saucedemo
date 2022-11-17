@@ -15,8 +15,8 @@ public class LoginPageTest extends BaseTest {
         loginPageService = new LoginPageService(); // инициализируем тут
     }
 
-    @Test
-    public void loginTest() {
+    @Test(description = "Verify successfully authorization with valid credentials")
+    public void verifyLoginWithValidCredentialsTest() {
         User user = new User();
         String expectedTextTitleOfInventoryPage = "PRODUCTS";
         String actualTextTitleOfInventoryPage = loginPageService
