@@ -1,6 +1,7 @@
-package org.example.pages;
+package org.example.page;
 
 import io.qameta.allure.Step;
+import org.example.utils.AllureUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,12 +26,14 @@ public class InventoryPage extends BasePage {
     public InventoryPage clickAddToCartButton(String productName) {
         By addToCartLocator = By.xpath(String.format(addToCartBtn, productName));
         driver.findElement(addToCartLocator).click();
+        AllureUtils.takeScreenshot(driver);
         return this;
     }
 
     @Step("Click on the 'Shopping Cart' icon")
     public void clickShoppingCartIcon() {
         shoppingCartIcon.click();
+        AllureUtils.takeScreenshot(driver);
     }
 
     private By getRemoveBtn(String productName) {
@@ -39,6 +42,7 @@ public class InventoryPage extends BasePage {
 
     @Step("Read name of the button")
     public String getRemoveBtnName(String productName) {
+        AllureUtils.takeScreenshot(driver);
         return driver.findElement(getRemoveBtn(productName)).getText();
     }
 

@@ -1,7 +1,7 @@
-package org.example.services;
+package org.example.service;
 
-import org.example.pages.InventoryPage;
-import org.example.pages.YourCartPage;
+import org.example.page.InventoryPage;
+import org.example.page.YourCartPage;
 
 public class InventoryPageService {
 

@@ -1,8 +1,8 @@
 package org.example.tests;
 
 import org.example.model.User;
-import org.example.services.InventoryPageService;
-import org.example.services.LoginPageService;
+import org.example.service.InventoryPageService;
+import org.example.service.LoginPageService;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;

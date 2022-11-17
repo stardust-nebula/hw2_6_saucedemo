@@ -1,4 +1,4 @@
-package org.example.pages;
+package org.example.page;
 
 import org.example.driver.DriverSingleton;
 import org.openqa.selenium.WebDriver;
