@@ -14,6 +14,7 @@ public abstract class BasePage { // нам не нужен объект этог
     private static final int WAIT_TIMEOUT_SECONDS = 10;
     protected WebDriver driver = DriverSingleton.getDriver(); //protected - чтобы наследники имели доступ
 
+
     protected BasePage() {
         /*protected - чтобы наследники имели доступ и по цепочке в рамках наследования вызывали один за другим конструктор
        // this это ссылка на объект. PageFactory.initElements(driver, this)

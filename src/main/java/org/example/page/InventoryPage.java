@@ -1,11 +1,13 @@
 package org.example.page;
 
 import io.qameta.allure.Step;
+import lombok.extern.log4j.Log4j2;
 import org.example.utils.AllureUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+@Log4j2
 public class InventoryPage extends BasePage {
 
     @FindBy(xpath = "//span[@class='title']")
@@ -19,12 +21,14 @@ public class InventoryPage extends BasePage {
 
     @Step("Take page title text")
     public String getTextOfPageTitleSection() {
+        AllureUtils.takeScreenshot(driver);
         return pageTitleSection.getText();
     }
 
     @Step("Click on 'Add to Cart' button to add '{productName}'")
     public InventoryPage clickAddToCartButton(String productName) {
         By addToCartLocator = By.xpath(String.format(addToCartBtn, productName));
+        log.info("Click on 'Add to Cart' button to add" + productName);
         driver.findElement(addToCartLocator).click();
         AllureUtils.takeScreenshot(driver);
         return this;
@@ -32,6 +36,7 @@ public class InventoryPage extends BasePage {
 
     @Step("Click on the 'Shopping Cart' icon")
     public void clickShoppingCartIcon() {
+        log.info("Click on 'Shopping Cart' icon");
         shoppingCartIcon.click();
         AllureUtils.takeScreenshot(driver);
     }
