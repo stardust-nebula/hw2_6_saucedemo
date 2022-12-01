@@ -10,14 +10,14 @@ import org.openqa.selenium.support.FindBy;
 @Log4j2
 public class InventoryPage extends BasePage {
 
+    private static String addToCartBtn = "//div[contains(text(),'%s')]/ancestor::div[@class='inventory_item']//button[contains(@id,'add-to-cart')]";
+    private static String removeBtn = "//div[contains(text(),'%s')]/ancestor::div[@class='inventory_item']//button[contains(@id,'remove')]";
+
     @FindBy(xpath = "//span[@class='title']")
     private WebElement pageTitleSection;
 
     @FindBy(xpath = "//a[@class='shopping_cart_link']")
     private WebElement shoppingCartIcon;
-
-    private static String addToCartBtn = "//div[contains(text(),'%s')]/ancestor::div[@class='inventory_item']//button[contains(@id,'add-to-cart')]";
-    private static String removeBtn = "//div[contains(text(),'%s')]/ancestor::div[@class='inventory_item']//button[contains(@id,'remove')]";
 
     @Step("Take page title text")
     public String getTextOfPageTitleSection() {
@@ -27,8 +27,8 @@ public class InventoryPage extends BasePage {
 
     @Step("Click on 'Add to Cart' button to add '{productName}'")
     public InventoryPage clickAddToCartButton(String productName) {
-        By addToCartLocator = By.xpath(String.format(addToCartBtn, productName));
         log.info("Click on 'Add to Cart' button to add" + productName);
+        By addToCartLocator = By.xpath(String.format(addToCartBtn, productName));
         driver.findElement(addToCartLocator).click();
         AllureUtils.takeScreenshot(driver);
         return this;

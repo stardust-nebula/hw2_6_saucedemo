@@ -30,8 +30,8 @@ public class LoginPage extends BasePage {
 
     @Step("Enter username in the 'username' field")
     public LoginPage fillInUsername(String username) {
-        waitVisibilityOfElement(usernameField).clear();
         log.info("Fill in username field with username: " + username);
+        waitVisibilityOfElement(usernameField).clear();
         usernameField.sendKeys(username);
         AllureUtils.takeScreenshot(driver);
         return this;
@@ -39,8 +39,8 @@ public class LoginPage extends BasePage {
 
     @Step("Enter password in the 'password' field")
     public LoginPage fillInPassword(String password) {
-        waitVisibilityOfElement(passwordField).clear();
         log.info("Fill in password field");
+        waitVisibilityOfElement(passwordField).clear();
         passwordField.sendKeys(password);
         AllureUtils.takeScreenshot(driver);
         return this;
