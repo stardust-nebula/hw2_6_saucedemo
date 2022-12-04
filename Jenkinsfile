@@ -24,10 +24,10 @@ pipeline {
             git branch: "${params.BRANCH}", url: 'https://github.com/stardust-nebula/hw2_6_saucedemo.git'
 
             // Run Maven on a Unix agent.
-            sh "mvn -Dmaven.test.failure.ignore=true -Dbrowser=${browser} -Dsurefire.suiteXmlFiles=${surefire} clean test"
+//             sh "mvn -Dmaven.test.failure.ignore=true -Dbrowser=${browser} -Dsurefire.suiteXmlFiles=${surefire} clean test"
 
             // To run Maven on a Windows agent, use
-//             bat "mvn -Dmaven.test.failure.ignore=true -Dusername=${username} -Dpassword=${password} -Dbrowser=chrome -Dsurefire.suiteXmlFiles=src/test/resources/testng-regression.xml clean test"
+            bat "mvn -Dmaven.test.failure.ignore=true -Dbrowser=${browser} -Dsurefire.suiteXmlFiles=${surefire} clean test"
          }
 
          post {
