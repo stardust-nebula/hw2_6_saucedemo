@@ -7,4 +7,9 @@
             <class name="org.example.tests.LoginPageTest"></class>
         </classes>
     </test>
+    <test name="Inventory Page Test">
+        <classes>
+            <class name="org.example.tests.InventoryPageTest"></class>
+        </classes>
+    </test>
 </suite>
