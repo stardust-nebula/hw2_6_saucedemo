@@ -10,9 +10,11 @@ pipeline {
         cron('0 1 * * *')
     }
     parameters {
-        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
-        booleanParam(defaultValue: true, description: 'Headless mode', name: 'HEADLESS')
-        string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: '')
+        choice(choices: ['chrome', 'firefox', 'safari', 'opera'], name: 'browser')
+        choice(choices: ['src/test/resources/testng-smoke.xml', 'src/test/resources/testng-regression.xml'], name: 'surefire')
+//         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+//         booleanParam(defaultValue: true, description: 'Headless mode', name: 'HEADLESS')
+//         string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: '')
     }
 
    stages {
@@ -22,10 +24,10 @@ pipeline {
             git branch: "${params.BRANCH}", url: 'https://github.com/stardust-nebula/hw2_6_saucedemo.git'
 
             // Run Maven on a Unix agent.
-            //sh "mvn clean test"
+            sh "mvn -Dmaven.test.failure.ignore=true -Dbrowser=${browser} -Dsurefire.suiteXmlFiles=${surefire} clean test"
 
             // To run Maven on a Windows agent, use
-            bat "mvn -Dmaven.test.failure.ignore=true -Dusername=${username} -Dpassword=${password} -Dbrowser=chrome -Dsurefire.suiteXmlFiles=src/test/resources/testng-regression.xml clean test"
+//             bat "mvn -Dmaven.test.failure.ignore=true -Dusername=${username} -Dpassword=${password} -Dbrowser=chrome -Dsurefire.suiteXmlFiles=src/test/resources/testng-regression.xml clean test"
          }
 
          post {
