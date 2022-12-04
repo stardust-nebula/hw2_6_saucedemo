@@ -9,22 +9,19 @@ pipeline {
     triggers {
         cron('0 1 * * *')
     }
-//     parameters {
-//         choice(choices: ['chrome', 'firefox', 'safari', 'opera'], name: 'browser')
-//         choice(choices: ['src/test/resources/testng-smoke.xml', 'src/test/resources/testng-regression.xml'], name: 'surefire')
-//         gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
-//         booleanParam(defaultValue: true, description: 'Headless mode', name: 'HEADLESS')
-//         string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: '')
-//     }
+    parameters {
+        choice(choices: ['chrome', 'firefox', 'safari', 'opera'], name: 'browser')
+        choice(choices: ['src/test/resources/testng-smoke.xml', 'src/test/resources/testng-regression.xml'], name: 'surefire')
+        gitParameter branchFilter: 'origin/(.*)', defaultValue: 'master', name: 'BRANCH', type: 'PT_BRANCH'
+        booleanParam(defaultValue: true, description: 'Headless mode', name: 'HEADLESS')
+        string(name: 'DEPLOY_ENV', defaultValue: 'staging', description: '')
+    }
 
    stages {
       stage('Testing') {
          steps {
             // Get some code from a GitHub repository
             git branch: "${params.BRANCH}", url: 'https://github.com/stardust-nebula/hw2_6_saucedemo.git'
-
-            // Run Maven on a Unix agent.
-//             sh "mvn -Dmaven.test.failure.ignore=true -Dbrowser=${browser} -Dsurefire.suiteXmlFiles=${surefire} clean test"
 
             // To run Maven on a Windows agent, use
             bat "mvn -Dmaven.test.failure.ignore=true -Dbrowser=${browser} -Dsurefire.suiteXmlFiles=${surefire} clean test"
